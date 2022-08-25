@@ -127,16 +127,6 @@ function parseLink(linkUrl, selectionText, pageUrl) {
 }
 
 async function openFile({ linkUrl, selectionText, pageUrl}) {
-    // let download_to_open = await download(linkUrl)
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('GET', 'file:///Users/sayyant/downloads/test_data.json')
-    // xhr.responseType = 'json'
-
-    // console.log("HERE")
-    // xhr.onload = function(e) {
-    //     var json_obj = (this.response)
-    //     console.log(json_obj)
-    // }
     getTestData = await fetch(linkUrl, {
         method: "GET",
         mode: "cors",
@@ -144,16 +134,38 @@ async function openFile({ linkUrl, selectionText, pageUrl}) {
             'Content-Type': 'application/json'
         }
     })
-    console.log(getTestData)
+    testData = await getTestData.json()
+    return testData
+}
+
+async function getFailingTestLinks(testData, repo) {
+    const failingTests = []
+    for (let test of testData) {
+        if (test.test_result == "failure") {
+            filePath = await getVscodeLink({repo: repo, file: test.test_file_path, line: test.test_file_line_number, isFolder: false})
+            failingTests.push(filePath)
+        }
+    }
+    return failingTests
+}
+
+function getBuildKiteRepo(pageUrl) {
+    return pageUrl.split("/")[4]
 }
 
 function download(url) {
     return new Promise(resolve => chrome.downloads.download({url}, resolve));
   }
 
-const openInVscode = ({ linkUrl, selectionText, pageUrl }) => {
+const openInVscode = async ({ linkUrl, selectionText, pageUrl }) => {
     if (selectionText == "test_data.json") {
-        openFile({linkUrl, selectionText, pageUrl})
+        const file = await openFile({linkUrl, selectionText, pageUrl})
+        const repo = getBuildKiteRepo(pageUrl)
+        const failingTestLinks = await getFailingTestLinks(file, repo)
+        
+        for (let link of failingTestLinks) {
+            await chrome.tabs.create({url: link})
+        }
     } else {
         parseLink(linkUrl, selectionText, pageUrl)
             .then(getVscodeLink)
