@@ -166,6 +166,14 @@ const openInVscode = async ({ linkUrl, selectionText, pageUrl }) => {
         for (let link of failingTestLinks) {
             await chrome.tabs.create({url: link})
         }
+    } else if (linkUrl == undefined) {
+        const file = selectionText.split(":")[0]
+        const line = selectionText.split(":")[1]
+        const repo = getBuildKiteRepo(pageUrl)
+
+        filePath = await getVscodeLink({repo: repo, file: file, line: line, isFolder: false})
+
+        await chrome.tabs.create({url: filePath})
     } else {
         parseLink(linkUrl, selectionText, pageUrl)
             .then(getVscodeLink)
@@ -177,10 +185,11 @@ const openInVscode = async ({ linkUrl, selectionText, pageUrl }) => {
 chrome.contextMenus.create({
     id: "open-in-vscode",
     title: 'Open in VSCode',
-    contexts: ['link', 'page'],
+    contexts: ['link', 'page', 'all'],
 });
 
 chrome.contextMenus.onClicked.addListener(((info) => {
+    console.log(info.linkUrl)
     openInVscode({ linkUrl: info.linkUrl, selectionText: info.selectionText, pageUrl: info.pageUrl });
 }));
 
