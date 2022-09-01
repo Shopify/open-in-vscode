@@ -1,32 +1,30 @@
 {
-    "manifest_version": 3,
-    "name": "Open in VSCode",
-    "version": "1.0.0",
-    "description": "Open Github file links and CI results from BuildKite in VSCode",
-    "action": {
-        "default_icon": "icons/icon19.png",
-        "default_title": "Open in VSCode"
-    },
-    "author": "Sayyant Rath",
-    "permissions": [
-        "activeTab",
-        "contextMenus",
-        "storage",
-        "downloads",
-        "downloads.open"
-    ],
-    "host_permissions": [
-        "*://*/*"
-    ],
-    "background": {
-        "service_worker": "contextmenu.js"
-    },
-    "options_page": "options.html",
-    "homepage_url": "https://github.com/Shopify/open-in-vscode",
-    "offline_enabled": true,
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    }
+  "manifest_version": 3,
+  "name": "Open in VSCode",
+  "version": "1.0.0",
+  "description": "Open Github file links and CI results from BuildKite in VSCode",
+  "action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "Open in VSCode"
+  },
+  "author": "Sayyant Rath",
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "storage",
+    "downloads",
+    "downloads.open"
+  ],
+  "host_permissions": ["*://*/*"],
+  "background": {
+    "service_worker": "contextmenu.js"
+  },
+  "options_page": "options.html",
+  "homepage_url": "https://github.com/Shopify/open-in-vscode",
+  "offline_enabled": true,
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }
