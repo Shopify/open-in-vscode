@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Open in VSCode",
+  "name": "Quick Open in VSCode",
   "version": "1.0.0",
-  "description": "Open Github file links and CI results from BuildKite in VSCode",
+  "description": "Quickly and easily open file links in VSCode",
   "action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "Open in VSCode"
+    "default_title": "Quick Open in VSCode"
   },
   "author": "Sayyant Rath",
   "permissions": [

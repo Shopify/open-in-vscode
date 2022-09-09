@@ -1,4 +1,4 @@
-# Open in VSCode
+# Quick Open in VSCode
 
 When participating in code reviews, scrolling through comments and then switching to VSCode to open each comment in the editor can become a cumbersome
 and repetitive task. Developers then have to also repeat this task again in other instances such as when reading through documentations which refers to
