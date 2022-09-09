@@ -1,5 +1,6 @@
 MIT License
 
+Copyright (c) 2018 Domenico Gemoli
 Copyright (c) 2022-present Shopify Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
