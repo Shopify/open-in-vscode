@@ -9,7 +9,11 @@
   },
   "author": "Sayyant Rath",
   "permissions": ["activeTab", "contextMenus", "storage"],
-  "host_permissions": ["*://*/*"],
+  "host_permissions": [
+    "https://buildkite.com/*",
+    "https://*.googleusercontent.com/*",
+    "https://storage.cloud.google.com/*"
+  ],
   "background": {
     "service_worker": "contextmenu.js"
   },
