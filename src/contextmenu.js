@@ -26,6 +26,12 @@ function getOptions() {
   });
 }
 
+chrome.contextMenus.create({
+  id: "open-in-vscode",
+  title: "Open in VSCode",
+  contexts: ["link", "page", "all"],
+});
+
 function getVscodeLink({ repo, file, isFolder, line }) {
   return getOptions().then(({ insidersBuild, remoteHost, basePath, debug }) => {
     let vscodeLink = insidersBuild ? "vscode-insiders" : "vscode";
