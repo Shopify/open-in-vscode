@@ -189,12 +189,6 @@ const openInVscode = async ({ linkUrl, selectionText, pageUrl }) => {
   }
 };
 
-chrome.contextMenus.create({
-  id: "open-in-vscode",
-  title: "Open in VSCode",
-  contexts: ["link", "page", "all"],
-});
-
 chrome.contextMenus.onClicked.addListener((info) => {
   console.log(info.linkUrl);
   openInVscode({
