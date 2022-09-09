@@ -8,13 +8,7 @@
     "default_title": "Quick Open in VSCode"
   },
   "author": "Sayyant Rath",
-  "permissions": [
-    "activeTab",
-    "contextMenus",
-    "storage",
-    "downloads",
-    "downloads.open"
-  ],
+  "permissions": ["activeTab", "contextMenus", "storage"],
   "host_permissions": ["*://*/*"],
   "background": {
     "service_worker": "contextmenu.js"
