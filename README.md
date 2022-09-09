@@ -2,8 +2,7 @@
 
 When participating in code reviews, scrolling through comments and then switching to VSCode to open each comment in the editor can become a cumbersome
 and repetitive task. Developers then have to also repeat this task again in other instances such as when reading through documentations which refers to
-certainfiles or when looking for CI failures in BuildKite. To automate this task, I created this chrome extension, Open in VSCode, which can open
-file path links in VSCode.
+certainfiles or when looking for CI failures in BuildKite. To automate this task, Open in VSCode can open file path links directly in VSCode.
 
 ## Features
 
