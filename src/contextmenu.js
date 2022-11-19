@@ -1,4 +1,5 @@
 const PULL_REQUEST_PATH_REGEXP = /.+\/([^/]+)\/(pull)\/[^/]+\/(.*)/;
+const spinPath = "/home/spin/src/github.com/Shopify";
 
 function getOptions() {
   return new Promise((resolve, reject) => {
@@ -8,9 +9,10 @@ function getOptions() {
         basePath: "",
         insidersBuild: false,
         debug: false,
+        useSpin: false,
       },
       (options) => {
-        if (options.basePath === "") {
+        if (!options.useSpin && options.basePath === "") {
           reject(
             new Error(
               "Looks like you haven't configured this extension yet. You can find more information about this by visiting the extension's README page."
@@ -20,7 +22,10 @@ function getOptions() {
           return;
         }
 
-        resolve(options);
+        resolve({
+          ...options,
+          basePath: options.useSpin ? spinPath : options.basePath,
+        });
       }
     );
   });

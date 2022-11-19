@@ -1,42 +1,79 @@
+const spinPath = "/home/spin/src/github.com/Shopify";
+
 const defaultOptions = {
   remoteHost: "",
   basePath: "",
   insidersBuild: false,
+  usingSpin: false,
   debug: false,
 };
 
+function showSpinPath(shouldShow) {
+  document.getElementById("basePath").toggleAttribute("hidden", shouldShow)
+  document.getElementById("basePathSpin").toggleAttribute("hidden", !shouldShow)
+}
+
+let previousTimeout = undefined;
+
+// type: "success" | "danger" | "warning"
+function showAlert(type, message, time) {
+    if (previousTimeout !== undefined)
+      clearTimeout(previousTimeout);
+    
+    const status = document.querySelector(".alert");
+    status.classList.remove("show");
+    ["success", "danger", "warning"].map((v) => status.classList.remove(`alert-${v}`));
+    
+    const statusClass = status.className;
+
+    status.textContent = message;
+    status.classList.add(`alert-${type}`)
+    status.classList.add("show")
+    status.className = `alert-${type} ${status.className} show`;
+
+    previousTimeout = setTimeout(() => {
+      status.className = statusClass;
+    }, time);
+}
+
 function restoreOptions() {
+  document.getElementById("basePathSpin").value = spinPath;
+
   chrome.storage.sync.get(defaultOptions, (options) => {
     document.getElementById("remoteHost").value = options.remoteHost;
     document.getElementById("basePath").value = options.basePath;
+    document.getElementById("usingSpin").checked = options.usingSpin;
     document.getElementById("insidersBuild").checked = options.insidersBuild;
     document.getElementById("debug").checked = options.debug;
+
+    showSpinPath(options.usingSpin);
   });
 }
 
 function saveOptions(event) {
   event.preventDefault();
 
+  const options = {
+    remoteHost: document.getElementById("remoteHost").value,
+    basePath: document.getElementById("basePath").value,
+    usingSpin: document.getElementById("usingSpin").checked,
+    spinPath,
+    insidersBuild: document.getElementById("insidersBuild").checked,
+    debug: document.getElementById("debug").checked,
+  };
+
+  if(options.usingSpin && (!options.remoteHost?.trim()?.length)) {
+    return showAlert("danger", "Please include a remote host when using Spin.", 2000)
+  }
+
   chrome.storage.sync.set(
-    {
-      remoteHost: document.getElementById("remoteHost").value,
-      basePath: document.getElementById("basePath").value,
-      insidersBuild: document.getElementById("insidersBuild").checked,
-      debug: document.getElementById("debug").checked,
-    },
-    () => {
-      // Update status to let user know options were saved.
-      const status = document.querySelector(".alert");
-      const statusClass = status.className;
-
-      status.className += " show";
-
-      setTimeout(() => {
-        status.className = statusClass;
-      }, 2000);
-    }
+    options,
+    () => showAlert("success", "Settings saved!", 2000)
   );
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
+document.getElementById("usingSpin").addEventListener("change", function() {
+  showSpinPath(this.checked);
+})
