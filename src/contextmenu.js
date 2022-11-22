@@ -196,7 +196,7 @@ const openInVscode = async ({ linkUrl, selectionText, pageUrl }) => {
     parseLink(linkUrl, selectionText, pageUrl)
       .then(getVscodeLink)
       .then((VSCodeLink) => chrome.tabs.create({ url: VSCodeLink }))
-      .catch(alert);
+      .catch(console.error);
   }
 };
 

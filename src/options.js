@@ -4,7 +4,7 @@ const defaultOptions = {
   remoteHost: "",
   basePath: "",
   insidersBuild: false,
-  usingSpin: false,
+  useSpin: false,
   debug: false,
 };
 
@@ -42,11 +42,11 @@ function restoreOptions() {
   chrome.storage.sync.get(defaultOptions, (options) => {
     document.getElementById("remoteHost").value = options.remoteHost;
     document.getElementById("basePath").value = options.basePath;
-    document.getElementById("usingSpin").checked = options.usingSpin;
+    document.getElementById("useSpin").checked = options.useSpin;
     document.getElementById("insidersBuild").checked = options.insidersBuild;
     document.getElementById("debug").checked = options.debug;
 
-    showSpinPath(options.usingSpin);
+    showSpinPath(options.useSpin);
   });
 }
 
@@ -56,13 +56,13 @@ function saveOptions(event) {
   const options = {
     remoteHost: document.getElementById("remoteHost").value,
     basePath: document.getElementById("basePath").value,
-    usingSpin: document.getElementById("usingSpin").checked,
+    useSpin: document.getElementById("useSpin").checked,
     spinPath,
     insidersBuild: document.getElementById("insidersBuild").checked,
     debug: document.getElementById("debug").checked,
   };
 
-  if(options.usingSpin && (!options.remoteHost?.trim()?.length)) {
+  if(options.useSpin && (!options.remoteHost?.trim()?.length)) {
     return showAlert("danger", "Please include a remote host when using Spin.", 2000)
   }
 
@@ -74,6 +74,6 @@ function saveOptions(event) {
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("submit", saveOptions);
-document.getElementById("usingSpin").addEventListener("change", function() {
+document.getElementById("useSpin").addEventListener("change", function() {
   showSpinPath(this.checked);
 })
