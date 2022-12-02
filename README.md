@@ -21,7 +21,7 @@ _NOTE: This chrome extension is not available yet on the Chrome Web Store_
 1. Download and pin the [Open in VSCode chrome extension](https://chrome.google.com/webstore/detail/quick-open-in-vscode/cidjlkdjfmegbpphjpombbpndiklpoee). Right click the chrome extension and open the "Options" page.
 2. For the base path, enter the path to where all your local repositories are located. This should generally be in the format of
    `/Users/{local_user_name}/src/github.com/Shopify`. For example, my base path was `/Users/sayyant/src/github.com/Shopify`
-3. _NOTE: Remote development with Spin is not supported yet_ If using Spin, then enter in information related to spin development in the remote
+3. If using Spin, then enter in information related to spin development in the remote
    development field
 4. Save settings and exit the "Options" page. You should be good to go!
 
@@ -41,7 +41,6 @@ coming up with a way to allow for as many people as possible to leverage the mos
 
 ### Future Features to Create:
 
-- Compatability with Spin repos (I honestly think the code is there to support this but I do not know how directories work with Spin)
 - Ability to highlight GitHub line numbers and open specific lines in VSCode
 - Ability to open file path links across Github branches to allow for a more seamless code review process
 - Remove the browser alert asking to open a link in VSCode
