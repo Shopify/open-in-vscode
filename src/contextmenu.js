@@ -218,3 +218,9 @@ chrome.contextMenus.onClicked.addListener((info) => {
 chrome.action.onClicked.addListener(({ url }) => {
   openInVscode({ linkUrl: url, pageUrl: url });
 });
+
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") {
+    chrome.runtime.openOptionsPage();
+  }
+});

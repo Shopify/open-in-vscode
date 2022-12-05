@@ -18,7 +18,7 @@ _File path links must be formatted to originate in the root directory of the rep
 
 _NOTE: This chrome extension is not available yet on the Chrome Web Store_
 
-1. Download and pin the [Open in VSCode chrome extension](https://chrome.google.com/webstore/detail/quick-open-in-vscode/cidjlkdjfmegbpphjpombbpndiklpoee). Right click the chrome extension and open the "Options" page.
+1. Download and pin the [Open in VSCode chrome extension](https://chrome.google.com/webstore/detail/quick-open-in-vscode/cidjlkdjfmegbpphjpombbpndiklpoee). The options page should open automatically on install. If it does not, then right click the chrome extension and open the "Options" page.
 2. For the base path, enter the path to where all your local repositories are located. This should generally be in the format of
    `/Users/{local_user_name}/src/github.com/Shopify`. For example, my base path was `/Users/sayyant/src/github.com/Shopify`
 3. If using Spin, then enter in information related to spin development in the remote
