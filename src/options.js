@@ -68,23 +68,15 @@ function saveOptions(event) {
 
   document.getElementById("saveMessage").innerHTML("Saving...")
 
-  chrome.storage.sync.set(options).then(success, error)
-}
-
-function success() {
-  document.getElementById("saveMessage").innerHTML("Saved.")
-}
-
-function error() {
-  showAlert("danger", "Failed to save settings!", 2000)
+  chrome.storage.sync.set(options)
+  .then(
+    () => document.getElementById("saveMessage").innerHTML("Saved."),
+    () => showAlert("danger", "Failed to save settings!", 2000)
+    )
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("change", saveOptions);
 document.getElementById("useSpin").addEventListener("change", function() {
   showSpinPath(this.checked);
-})
-
-chrome.storage.onChanged.addListener(() => {
-  document.getElementById("saveMessage").innerHTML("Saved.")
 })
