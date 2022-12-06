@@ -66,11 +66,11 @@ function saveOptions(event) {
     return showAlert("danger", "Please include a remote host when using Spin.", 2000)
   }
 
-  document.getElementById("saveMessage").innerHTML("Saving...")
+  document.getElementById("saveMessage").innerHTML = "Saving..."
 
   chrome.storage.sync.set(options)
   .then(
-    () => document.getElementById("saveMessage").innerHTML("Saved."),
+    () => document.getElementById("saveMessage").innerHTML ="Saved.",
     () => showAlert("danger", "Failed to save settings!", 2000)
     )
 }
