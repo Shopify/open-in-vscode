@@ -19,11 +19,11 @@ let previousTimeout = undefined;
 function showAlert(type, message, time) {
     if (previousTimeout !== undefined)
       clearTimeout(previousTimeout);
-    
+
     const status = document.querySelector(".alert");
     status.classList.remove("show");
     ["success", "danger", "warning"].map((v) => status.classList.remove(`alert-${v}`));
-    
+
     const statusClass = status.className;
 
     status.textContent = message;
@@ -73,7 +73,7 @@ function saveOptions(event) {
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
-document.querySelector("form").addEventListener("submit", saveOptions);
+document.querySelector("form").addEventListener("change", saveOptions);
 document.getElementById("useSpin").addEventListener("change", function() {
   showSpinPath(this.checked);
 })
