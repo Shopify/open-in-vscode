@@ -68,7 +68,7 @@ function saveOptions(event) {
 
   chrome.storage.sync.set(
     options,
-    () => showAlert("success", "Settings saved!", 2000)
+    () => document.getElementById("saveMessage").innerHTML("Saving...")
   );
 }
 
@@ -76,4 +76,8 @@ document.addEventListener("DOMContentLoaded", restoreOptions);
 document.querySelector("form").addEventListener("change", saveOptions);
 document.getElementById("useSpin").addEventListener("change", function() {
   showSpinPath(this.checked);
+})
+
+chrome.storage.onChanged.addListener(() => {
+  document.getElementById("saveMessage").innerHTML("Saved.")
 })
