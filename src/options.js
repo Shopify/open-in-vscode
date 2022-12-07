@@ -19,11 +19,11 @@ let previousTimeout = undefined;
 function showAlert(type, message, time) {
     if (previousTimeout !== undefined)
       clearTimeout(previousTimeout);
-    
+
     const status = document.querySelector(".alert");
     status.classList.remove("show");
     ["success", "danger", "warning"].map((v) => status.classList.remove(`alert-${v}`));
-    
+
     const statusClass = status.className;
 
     status.textContent = message;
@@ -66,14 +66,17 @@ function saveOptions(event) {
     return showAlert("danger", "Please include a remote host when using Spin.", 2000)
   }
 
-  chrome.storage.sync.set(
-    options,
-    () => showAlert("success", "Settings saved!", 2000)
-  );
+  document.getElementById("saveMessage").innerHTML = "Saving..."
+
+  chrome.storage.sync.set(options)
+  .then(
+    () => document.getElementById("saveMessage").innerHTML ="Saved.",
+    () => showAlert("danger", "Failed to save settings!", 2000)
+    )
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
-document.querySelector("form").addEventListener("submit", saveOptions);
+document.querySelector("form").addEventListener("change", saveOptions);
 document.getElementById("useSpin").addEventListener("change", function() {
   showSpinPath(this.checked);
 })

@@ -23,6 +23,11 @@
       form > *:not(:first-child) {
         margin-top: 2rem;
       }
+
+      .save-alert {
+        display: flex;
+        justify-content: flex-end;
+      }
     </style>
   </head>
 
@@ -95,8 +100,9 @@
             looks like.</small
           >
         </div>
-
-        <button type="submit" class="btn btn-primary">Save settings</button>
+        <div class="save-alert">
+          <p id="saveMessage">Saved.</p>
+        </div>
       </form>
 
       <div class="alert alert-dismissible fade" role="alert"></div>
