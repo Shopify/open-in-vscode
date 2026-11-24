@@ -1,3 +1,6 @@
+> [!WARNING]
+> **This repository is no longer maintained.** It has been archived and receives no updates or security fixes.
+
 # [Quick Open in VSCode](https://chrome.google.com/webstore/detail/quick-open-in-vscode/cidjlkdjfmegbpphjpombbpndiklpoee)
 
 When participating in code reviews, scrolling through comments and then switching to VSCode to open each comment in the editor can become a cumbersome
